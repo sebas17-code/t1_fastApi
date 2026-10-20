@@ -18,9 +18,9 @@ async def root():
     status_code=status.HTTP_201_CREATED,
 )
 
-def create_trainee(trainee:TraineeModel):
+def api_create_trainee(trainee:TraineeModel):
     #validar si ya existe el documento
-    return create_trainee()
+    return create_trainee(trainee)
 
 #Obtener la lista de aprendices
 @app.get(
