@@ -1,22 +1,24 @@
+import certifi
 from pymongo import MongoClient
-from pymongo.errors import ConnectionFailure,ServerSelectionTimeoutError
-#agregra la URI de conexion a tu base de datos MongoBD
+from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError
 
-MONGO_URL = "mongodb+srv://juanpablozapatagonsales_db_user:8XY747K70EzLYcVl@clusterapi.ln61rig.mongodb.net/?appName=Taller1_fastAPI"
-#crear una instancia de cliente de MongoDB y asignar un tiempo de espera para la seccion del servidor
+# URI de conexión a tu base de datos MongoDB Atlas
+MONGO_URL = "mongodb+srv://sebastianmonsalve800_db_user:sebas17@cluster0.abqox6t.mongodb.net/"
 
-client = MongoClient(MONGO_URL, serverSelectionTimeoutMS=3000)
-#Crear la base de datos y la coleccion
+# Crear la instancia del cliente con certifi para evitar errores de SSL/TLS
+client = MongoClient(
+    MONGO_URL,
+    serverSelectionTimeoutMS=3000,
+    tlsCAFile=certifi.where()  # <-- Agregado para solucionar el error de SSL
+)
+
+# Crear/seleccionar la base de datos y la colección
 db = client.data_ap
 collection = db.trainee
 
+# Probar la conexión al arrancar el servidor
 try:
-  #intentar obtener informacion del servidor para verificar la conexion
-  client.server_info()
-  client.admin.command("ping")
-  print("conexion exitosa con MongoDB")
-except (ConnectionFailure,ServerSelectionTimeoutError) as e:
-  print(f"error al conectar a MongoDB : {e}")
-finally:
-  #cerrar la conexion al cliente MongoDB
-  client.close()
+    client.admin.command("ping")
+    print("conexion exitosa con MongoDB")
+except (ConnectionFailure, ServerSelectionTimeoutError) as e:
+    print(f"error al conectar a MongoDB : {e}")

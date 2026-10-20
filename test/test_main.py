@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure,ServerSelectionTimeoutError
 
 #agregra la URI de conexion a tu base de datos MongoBD
-MONGO_URL = "mongodb+srv://juanpablozapatagonsales_db_user:8XY747K70EzLYcVl@clusterapi.ln61rig.mongodb.net/?appName=Taller1_fastAPI"
+MONGO_URL = "mongodb+srv://sebastianmonsalve800_db_user:sebas17@cluster0.abqox6t.mongodb.net/"
 #crear una instancia de cliente de MongoDB y asignar un tiempo de espera para la seccion del servidor
 client = MongoClient(MONGO_URL,ServerSelectionTimeoutMS=3000)
 #Crear la base de datos y la coleccion
@@ -11,7 +11,7 @@ collection = db.Mesas
 
 #crear el modelo de datos para la coleccion
 nueva_mesa = {
-  "name":"Juan pablo",
+  "name":"sebastian",
   "status":"alive",
   "species":"human",
   "gender":"male",

@@ -1,2 +1,5 @@
-venv/
+.venv/
 .env
+structure.sh
+__pycache__/
+.vscode/

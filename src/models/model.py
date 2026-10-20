@@ -1,6 +1,7 @@
 from typing import Optional
 from pydantic import BaseModel,EmailStr
-class traineeModel(BaseModel):
+
+class TraineeModel(BaseModel):
   document: str
   firstName:str
   lastName:str
@@ -9,7 +10,7 @@ class traineeModel(BaseModel):
   programn:str
   record_number:int
 
-class traineeUpdateModel(BaseModel):
+class TraineeUpdateModel(BaseModel):
   firstName: Optional[str] = None
   lastName: Optional[str] = None
   email: Optional[EmailStr] = None
