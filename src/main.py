@@ -31,13 +31,11 @@ def get_all_trainees_api():
     )
 
 #Obtener un aprendiz por su ID
-@app.get(
-    "/trainee/{id}", response_description="Obtener un aprendiz por su id"
-)
-def get_trainee_by_id_api():
+@app.get("/trainee/{id}", response_description="Obtener un aprendiz por su id")
+def get_trainee_by_id_api(id: str):
     trainee = get_trainee_by_id(id)
-    if not trainee: 
-        raise HTTPException(status_code=404,detail="Aprendiz no encontrado")
+    if not trainee:
+        raise HTTPException(status_code=404, detail="Aprendiz no encontrado")
     return trainee
 
 #Actualizar datos de un aprendiz por su id
@@ -45,12 +43,11 @@ def get_trainee_by_id_api():
    "/trainee/{id}", response_description="actualizar datos de  un aprendiz por su id" 
 )
 
-def update_trainee_api(id:str, trainee: TraineeUpdateModel):
-    trainee = update_trainee(id, trainee)
-    if not trainee:
-        raise HTTPException(
-            status_code=404, detail="Aprendiz no encontrado o sin datos a actualizar",
-        )
+def update_trainee_api(id: str, trainee: TraineeUpdateModel):
+    updated = update_trainee(id, trainee)
+    if not updated:
+        raise HTTPException(status_code=404, detail="Aprendiz no encontrado o sin datos a actualizar")
+    return updated
 #Eliminar una aprendiz
 @app.delete(
     "/trainee/{id}", response_description="Eliminar un aprendiz"

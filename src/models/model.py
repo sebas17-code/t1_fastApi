@@ -7,7 +7,7 @@ class TraineeModel(BaseModel):
   lastName:str
   email:EmailStr
   age:int
-  programn:str
+  program:str
   record_number:int
 
 class TraineeUpdateModel(BaseModel):
